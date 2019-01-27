@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewData["Title"] = "ProductList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@model List<ProductModel>
+
+<div>
+    <div class="row container-fluid">
+        <div class="col-sm-11"><h1>Products</h1></div>
+        <div class="col-sm-1"><button class="btn btn-outline-primary" onclick="location.href='@Url.Action("AddProduct", "Product")'">Add</button></div>
+    </div>
+   
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <td>#</td>
+                <td>Product Name</td>
+                <td>Description</td>
+                <td>Amount</td>
+                <td>Price</td>
+                <td>Edit</td>
+                <td>Delete</td>
+            </tr>
+        </thead>
+        <tbody>
+            @{int i = 1;}
+            @foreach (var prod in Model)
+            {
+            <tr>
+                <td>@i</td>
+                <td>@prod.ProductName</td>
+                <td>@prod.Description</td>
+                <td>@prod.Amount</td>
+                <td>@prod.Price</td>
+                <td><a asp-action="EditProduct" asp-route-id="@prod.Id">Edit</a></td>
+                <td><a asp-action="DeleteProduct" asp-route-id="@prod.Id" onclick="return confirm('Are you sure to delete this product?')">Delete</a></td>
+            </tr>
+                i++;
+            }
+        </tbody>
+    </table>
+
+</div>
+
