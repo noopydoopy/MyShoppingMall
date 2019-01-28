@@ -17,5 +17,7 @@ namespace MyShoppingMall.Web.Models
 
         [DataMember]
         public string Description { get; set; }
+
+        public List<ProductModel> Products { get; set; }
     }
 }

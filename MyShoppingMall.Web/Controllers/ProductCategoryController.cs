@@ -37,7 +37,7 @@ namespace MyShoppingMall.Web.Controllers
         {
             if(ModelState.IsValid)
             {
-                prodCategoryService.CreateProductCategiry(category);
+                prodCategoryService.CreateProductCategory(category);
                 return RedirectToAction("Index", "ProductCategory");
             }
             return View(new ProductCategoryModel());

@@ -12,10 +12,12 @@ namespace MyShoppingMall.Web.Services.Interfaces
 
         ProductCategoryModel GetById(int id);
 
-        void CreateProductCategiry(ProductCategoryModel prodCategory);
+        void CreateProductCategory(ProductCategoryModel prodCategory);
 
         void UpdateProductCategory(ProductCategoryModel prodCategory);
 
         void DeleteProductCategory(int id);
+
+        List<ProductCategoryModel> GetProductCategoryWithProduct();
     }
 }

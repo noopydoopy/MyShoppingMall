@@ -22,7 +22,7 @@ namespace MyShoppingMall.Web.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.Categories = productService.GetAll();
+            ViewBag.Categories = productService.GetProductCategoryWithProduct();
             return View();
         }
 
