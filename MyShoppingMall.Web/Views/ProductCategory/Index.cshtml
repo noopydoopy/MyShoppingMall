@@ -5,11 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<div class="row container-fluid">
+    <div class="col-sm-11"><h1>Product Category</h1></div>
+    <div class="col-sm-1"><button class="btn btn-outline-primary" onclick="location.href='@Url.Action("AddProductCategory", "ProductCategory")'">Add</button></div>
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -32,9 +31,9 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "EditProductCategory", new { id = item.Id }) |
+                @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+                <a asp-action="DeleteProduct" asp-route-id="@item.Id" onclick="return confirm('Are you sure to delete this category?')">Delete</a>
             </td>
         </tr>
 }

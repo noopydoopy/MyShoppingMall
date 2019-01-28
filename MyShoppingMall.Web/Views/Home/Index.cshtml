@@ -30,24 +30,40 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
-    </div>    
-</div>
-<div class="container">
-    <div class="row text-center">
-        @for (int i = 0; i < 6; i++)
-        {
-        <div class="col-sm-12 col-md-4">
-            <div class="card m-2">
-                <img src="https://images-na.ssl-images-amazon.com/images/I/71VE9XyPtlL._SL1324_.jpg" class="card-img-top" alt="Image not found">
-                <div class="card-body">
-                    <h5 class="card-title">Product Name</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-           
-        }
-
     </div>
 </div>
+<div class="container">
+    @foreach (var category in ViewBag.Categories)
+    {
+        <div class="my-2 p-2">
+            <diV class="card">
+                <div class="card-header">
+                    @category.Title
+                </div>
+                <div class="card-body">
+                    <div class="container">
+                        <div class="row text-center">
+                            @for (int i = 0; i < 3; i++)
+                            {
+                                <div class="col-sm-12 col-md-4">
+                                    <div class="card m-2">
+                                        <img src="https://images-na.ssl-images-amazon.com/images/I/71VE9XyPtlL._SL1324_.jpg" class="card-img-top" alt="Image not found">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Product Name</h5>
+                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </diV>
+        </div>
+    }
+</div>
+
+

@@ -24,7 +24,7 @@ namespace MyShoppingMall.Web.Models
         [DataMember]
         public string PicUrl { get; set; }
         [DataMember]
-        [Required(ErrorMessage = "Product category is required")]
+        [RegularExpression(@"^[1-9][0-9]*$", ErrorMessage = "Product category is required")]
         public int CategoryId { get; set; }
     }
 }

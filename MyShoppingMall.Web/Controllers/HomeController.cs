@@ -7,17 +7,22 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using MyShoppingMall.Web.Models;
+using MyShoppingMall.Web.Services;
+using MyShoppingMall.Web.Services.Interfaces;
 
 namespace MyShoppingMall.Web.Controllers
 {
     public class HomeController : Controller
     {
+        IProductCategoryService productService;
+        public HomeController()
+        {
+            productService = new ProductCategoryService();
+        }
+
         public IActionResult Index()
         {
-            var AppSetting = new ConfigurationBuilder()
-                    .AddJsonFile("appsettings.json")
-                    .Build();
-            string path = AppSetting["databaseDir"];
+            ViewBag.Categories = productService.GetAll();
             return View();
         }
 

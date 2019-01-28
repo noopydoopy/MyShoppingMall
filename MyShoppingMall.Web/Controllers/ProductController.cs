@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MyShoppingMall.Web.Models;
 using MyShoppingMall.Web.Services;
 using MyShoppingMall.Web.Services.Interfaces;
@@ -13,9 +14,11 @@ namespace MyShoppingMall.Web.Controllers
     public class ProductController : Controller
     {
         IProductService productService;
+        private IProductCategoryService prodCategoryService;
         public ProductController()
         {
             productService = new ProductService();
+            prodCategoryService = new ProductCategoryService();
         }
 
         [Route("ProductList")]
@@ -29,6 +32,8 @@ namespace MyShoppingMall.Web.Controllers
         [Route("EditProduct")]
         public IActionResult EditProduct(int id)
         {
+            var categories = prodCategoryService.GetAll();
+            ViewBag.Categories = new SelectList(categories, "Id", "Title");
             var product = productService.GetById(id);
             return View(product);
         }
@@ -37,7 +42,9 @@ namespace MyShoppingMall.Web.Controllers
         [HttpPost]
         public IActionResult EditProduct(ProductModel product)
         {
-            if(ModelState.IsValid)
+            var categories = prodCategoryService.GetAll();
+            ViewBag.Categories = new SelectList(categories, "Id", "Title");
+            if (ModelState.IsValid)
             {
                 productService.UpdateProduct(product);
                 return RedirectToAction("ProductList", "Product");
@@ -48,6 +55,8 @@ namespace MyShoppingMall.Web.Controllers
         [Route("AddProduct")]
         public IActionResult AddProduct()
         {
+            var categories = prodCategoryService.GetAll();
+            ViewBag.Categories = new SelectList(categories, "Id", "Title");
             return View(new ProductModel());
         }
 
@@ -55,7 +64,10 @@ namespace MyShoppingMall.Web.Controllers
         [HttpPost]
         public IActionResult AddProduct(ProductModel product)
         {
-            if(ModelState.IsValid)
+            var categories = prodCategoryService.GetAll();
+            ViewBag.Categories = new SelectList(categories, "Id", "Title");
+
+            if (ModelState.IsValid)
             {
                 productService.CreateProduct(product);
                 return RedirectToAction("ProductList", "Product");
