@@ -18,6 +18,6 @@ namespace MyShoppingMall.Web.Services.Interfaces
 
         void DeleteProductCategory(int id);
 
-        List<ProductCategoryModel> GetProductCategoryWithProduct();
+        List<ProductCategoryModel> GetProductCategoryWithProduct(int? maxProduct = null);
     }
 }

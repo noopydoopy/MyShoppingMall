@@ -11,7 +11,7 @@
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
-        <div class="carousel-inner">
+        <div class="carousel-inner bg-dark">
             <div class="carousel-item active">
                 <img src="https://media.comicbook.com/2018/07/gundam-ready-player-one-1097246-1280x0-1120371-1280x0.jpeg" class="d-block w-100" alt="..." height="500">
             </div>
@@ -47,11 +47,11 @@
                             {
                                 <div class="col-sm-12 col-md-4">
                                     <div class="card m-2">
-                                        <img src="@product.PicUrl" class="card-img-top" alt="Image not found">
+                                        <img src="@product.PicUrl" class="card-img-top" alt="Image not found" style="height: 150px; width: 100%; object-fit:contain;">
                                         <div class="card-body">
                                             <h5 class="card-title">@product.ProductName</h5>
                                             <p class="card-text">@product.Description</p>
-                                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                                            <a asp-action="ProductDetail" asp-controller="Product" asp-route-id="@product.Id" class="btn btn-primary btn-sm">View</a>
                                         </div>
                                     </div>
                                 </div>
@@ -59,6 +59,9 @@
 
                         </div>
                     </div>
+                </div>
+                <div class="card-footer text-right">
+                    @Html.ActionLink("See all", "Details", "Product", new { categoryId = category.Id })
                 </div>
             </diV>
         </div>

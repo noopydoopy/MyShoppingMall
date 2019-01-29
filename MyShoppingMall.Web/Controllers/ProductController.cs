@@ -14,7 +14,7 @@ namespace MyShoppingMall.Web.Controllers
     public class ProductController : Controller
     {
         IProductService productService;
-        private IProductCategoryService prodCategoryService;
+        IProductCategoryService prodCategoryService;
         public ProductController()
         {
             productService = new ProductService();
@@ -80,6 +80,36 @@ namespace MyShoppingMall.Web.Controllers
         {
             productService.DeleteProduct(id);
             return RedirectToAction("ProductList", "Product");
+        }
+
+        [Route("ProductDetail")]
+        public IActionResult ProductDetail(int id)
+        {
+            var product = productService.GetById(id);
+            return View(product);
+        }
+
+        [Route("BuyProduct")]
+        public IActionResult BuyProduct(int id, int amount)
+        {
+            var product = productService.GetById(id);
+            if (product == null)
+            {
+                return NotFound("Product is not exist");
+            }
+
+            product.Amount -= amount;
+            productService.UpdateProduct(product);
+
+            return RedirectToAction("Details", "Product", new { categoryId = product.CategoryId });
+        }
+
+        [Route("Details")]
+        public IActionResult Details(int categoryId)
+        {
+            ViewBag.Category = prodCategoryService.GetById(categoryId);
+            var products = productService.GetByCategoryId(categoryId);
+            return View(products);
         }
     }
 }

@@ -41,13 +41,16 @@ namespace MyShoppingMall.Web.Services
             return category;
         }
 
-        public List<ProductCategoryModel> GetProductCategoryWithProduct()
+        public List<ProductCategoryModel> GetProductCategoryWithProduct(int? maxProduct = null)
         {
             var categories = adapter.GetEntities<ProductCategoryModel>("ProductCategory");
             var products = adapter.GetEntities<ProductModel>("Product");
             foreach (var cat in categories)
             {
-                cat.Products = products.Where(p => p.CategoryId == cat.Id).ToList();
+                if (maxProduct.HasValue)
+                    cat.Products = products.Where(p => p.CategoryId == cat.Id).Take(maxProduct.Value).ToList();
+                else
+                    cat.Products = products.Where(p => p.CategoryId == cat.Id).ToList();
             }
 
             return categories;

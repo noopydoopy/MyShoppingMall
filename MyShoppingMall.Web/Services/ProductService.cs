@@ -37,6 +37,12 @@ namespace MyShoppingMall.Web.Services
             return products;
         }
 
+        public List<ProductModel> GetByCategoryId(int categoryId)
+        {
+            var products = adapter.GetEntities<ProductModel>("Product");
+            return products.Where(p => p.CategoryId == categoryId).ToList();
+        }
+
         public ProductModel GetById(int id)
         {
             var products = adapter.GetEntities<ProductModel>("Product");

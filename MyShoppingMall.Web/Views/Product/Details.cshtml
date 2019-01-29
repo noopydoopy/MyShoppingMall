@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<ProductModel>
+<h1>@ViewBag.Category.Title</h1>
+<div class="container">
+    <div class="row">
+        @foreach (var product in Model)
+        {
+            <div class="col-sm-12 col-md-4">
+                <div class="card m-2">          
+                    <img src="@product.PicUrl" class="card-img-top" alt="Image not found" style="height: 150px; width: 100%; object-fit:contain;">
+                    <div class="card-body">
+                        <h5 class="card-title">@product.ProductName</h5>
+                        <p class="card-text">@product.Description</p>
+                        <p class="card-text">Price : @product.Price</p>
+                        @if (product.Amount > 0)
+                        {
+                            <a asp-action="ProductDetail" asp-controller="Product" asp-route-id="@product.Id" class="btn btn-primary btn-sm">Buy</a>
+                        }
+                        else
+                        {
+                            <span class="text-danger">Sold out</span>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

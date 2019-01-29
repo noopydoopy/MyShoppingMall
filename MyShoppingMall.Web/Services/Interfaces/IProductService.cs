@@ -17,5 +17,7 @@ namespace MyShoppingMall.Web.Services.Interfaces
         void CreateProduct(ProductModel product);
 
         void DeleteProduct(int id);
+
+        List<ProductModel> GetByCategoryId(int categoryId);
     }
 }
