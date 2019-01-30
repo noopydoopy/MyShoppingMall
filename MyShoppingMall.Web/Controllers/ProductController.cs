@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MyShoppingMall.Web.Models;
@@ -21,6 +22,7 @@ namespace MyShoppingMall.Web.Controllers
             prodCategoryService = new ProductCategoryService();
         }
 
+        [Authorize]
         [Route("ProductList")]
         public IActionResult ProductList()
         {
@@ -29,6 +31,7 @@ namespace MyShoppingMall.Web.Controllers
             return View(products);
         }
 
+        [Authorize]
         [Route("EditProduct")]
         public IActionResult EditProduct(int id)
         {
@@ -38,6 +41,7 @@ namespace MyShoppingMall.Web.Controllers
             return View(product);
         }
 
+        [Authorize]
         [Route("EditProduct")]
         [HttpPost]
         public IActionResult EditProduct(ProductModel product)
@@ -52,6 +56,7 @@ namespace MyShoppingMall.Web.Controllers
             return View(product);
         }
 
+        [Authorize]
         [Route("AddProduct")]
         public IActionResult AddProduct()
         {
@@ -60,6 +65,7 @@ namespace MyShoppingMall.Web.Controllers
             return View(new ProductModel());
         }
 
+        [Authorize]
         [Route("AddProduct")]
         [HttpPost]
         public IActionResult AddProduct(ProductModel product)
@@ -75,6 +81,7 @@ namespace MyShoppingMall.Web.Controllers
             return View(product);
         }
 
+        [Authorize]
         [Route("DeleteProduct")]
         public IActionResult DeleteProduct(int id)
         {
