@@ -17,8 +17,9 @@ namespace MyShoppingMall.Web
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
+            var contentRoot = env.ContentRootPath;
             Configuration = configuration;
         }
 
@@ -36,7 +37,6 @@ namespace MyShoppingMall.Web
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
             // Add default admin user.
             services.AddSingleton<IUserService>(new UserService("admin", "1234"));
             services.AddAuthentication(options =>

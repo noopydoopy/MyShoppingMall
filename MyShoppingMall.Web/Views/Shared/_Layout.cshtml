@@ -34,15 +34,12 @@
                         }
                         else
                         {
-                            <div>
-                                <span>Hello @User.Identity.Name</span>
-                            </div>
+                            <span>Hello @User.Identity.Name</span>
                             <div style="float:right;">
                                 <form asp-action="Signout" asp-controller="Auth">
-                                    <button type="submit"><i class="fas fa-sign-out-alt"></i></button>
+                                    <button type="submit" class="btn btn-sm btn-primary" style="margin-right:20px;">Logout</button>
                                 </form>
                             </div>
-                          
 
                         }
 

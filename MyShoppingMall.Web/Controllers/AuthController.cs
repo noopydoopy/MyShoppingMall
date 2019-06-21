@@ -32,6 +32,7 @@ namespace MyShoppingMall.Web.Controllers
         [Route("Signin")]
         public async Task<IActionResult> Signin(SigninModel model, string returnUrl = null)
         {
+            ViewBag.Message = "";
             if(ModelState.IsValid)
             {
                 User user;
@@ -53,6 +54,8 @@ namespace MyShoppingMall.Web.Controllers
 
                     return RedirectToAction("Index", "Home");
                 }
+                else
+                    ViewBag.Message = "UserName or password is not correct";
 
             }
 

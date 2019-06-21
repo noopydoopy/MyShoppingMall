@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MyShoppingMall.Web.Models;
@@ -14,12 +16,15 @@ namespace MyShoppingMall.Web.Controllers
     [Route("Product")]
     public class ProductController : Controller
     {
+        private readonly IHostingEnvironment _hostingEnvironment;
         IProductService productService;
         IProductCategoryService prodCategoryService;
-        public ProductController()
+        public ProductController(IHostingEnvironment hostingEnvironment)
         {
-            productService = new ProductService();
-            prodCategoryService = new ProductCategoryService();
+            _hostingEnvironment = hostingEnvironment;
+            string webRootPath = _hostingEnvironment.ContentRootPath + "\\Database";
+            productService = new ProductService(webRootPath);
+            prodCategoryService = new ProductCategoryService(webRootPath);
         }
 
         [Authorize]

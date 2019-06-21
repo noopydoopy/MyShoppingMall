@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting.Internal;
 using Microsoft.AspNetCore.Mvc;
 using MyShoppingMall.Web.Models;
 using MyShoppingMall.Web.Services;
@@ -9,13 +12,18 @@ using MyShoppingMall.Web.Services.Interfaces;
 
 namespace MyShoppingMall.Web.Controllers
 {
+
+    [Authorize]
     public class ProductCategoryController : Controller
     {
+        private readonly IHostingEnvironment _hostingEnvironment;
         private IProductCategoryService prodCategoryService;
 
-        public ProductCategoryController()
+        public ProductCategoryController(IHostingEnvironment hostingEnvironment)
         {
-            prodCategoryService = new ProductCategoryService();
+            _hostingEnvironment = hostingEnvironment;
+            string webRootPath = _hostingEnvironment.ContentRootPath + "\\Database";
+            prodCategoryService = new ProductCategoryService(webRootPath);
         }
 
         public IActionResult Index()

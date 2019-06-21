@@ -11,9 +11,9 @@ namespace MyShoppingMall.Web.Services
     public class ProductService : IProductService
     {
         private DataAccessAdapter adapter;
-        public ProductService()
+        public ProductService(string dbPath)
         {
-            adapter = new DataAccessAdapter();
+            adapter = new DataAccessAdapter(dbPath);
         }
         public void CreateProduct(ProductModel product)
         {

@@ -1,4 +1,4 @@
-﻿{
+{
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
@@ -6,6 +6,12 @@
       "applicationUrl": "http://localhost:9012",
       "sslPort": 44352
     }
+  },
+  "publishOptions": {
+    "include": [
+      "wwwroot",
+      "appsettings.json"
+    ]
   },
   "profiles": {
     "IIS Express": {
@@ -18,16 +24,10 @@
     "MyShoppingMall.Web": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "applicationUrl": "https://localhost:5001;http://localhost:5000"
     }
-  },
-  "publishOptions": {
-    "include": [
-      "wwwroot",
-      "appsettings.json"
-    ]
   }
-  }
+}

@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using MyShoppingMall.Web.Models;
@@ -14,10 +16,13 @@ namespace MyShoppingMall.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IHostingEnvironment _hostingEnvironment;
         IProductCategoryService productService;
-        public HomeController()
+        public HomeController(IHostingEnvironment hostingEnvironment)
         {
-            productService = new ProductCategoryService();
+            _hostingEnvironment = hostingEnvironment;
+            string webRootPath = _hostingEnvironment.ContentRootPath + "\\Database";
+            productService = new ProductCategoryService(webRootPath);
         }
 
         public IActionResult Index()

@@ -12,9 +12,9 @@ namespace MyShoppingMall.Web.Services
     {
         private DataAccessAdapter adapter;
 
-        public ProductCategoryService()
+        public ProductCategoryService(string dbPath)
         {
-            adapter = new DataAccessAdapter();
+            adapter = new DataAccessAdapter(dbPath);
         }
         public void CreateProductCategory(ProductCategoryModel prodCategory)
         {
